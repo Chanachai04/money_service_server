@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use("/user", userRoute);
 app.use("/money", moneyRoute);
-
+app.use("/images/users", express.static("images/users"));
 app.get("/", (req, res) => {
   res.send("Hello");
 });
