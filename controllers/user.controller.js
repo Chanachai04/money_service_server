@@ -3,7 +3,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -37,13 +36,13 @@ exports.uploadUser = multer({
 
 exports.registerUser = async (req, res) => {
   try {
-    // const { userFullname, userBirthDate, userName, userPassword } = req.body;
+    const { userFullname, userBirthDate, userName, userPassword } = req.body;
     const result = await prisma.user_tb.create({
       data: {
-        userFullname: req.body.userFullname,
-        userBirthDate: req.body.userBirthDate,
-        userName: req.body.userName,
-        userPassword: req.body.userPassword,
+        userFullname: userFullname,
+        userBirthDate: userBirthDate,
+        userName: userName,
+        userPassword: userPassword,
         userImage: req.file ? req.file.path.replace("images\\users\\", "") : "",
       },
     });
