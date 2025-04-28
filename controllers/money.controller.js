@@ -1,7 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-exports.getMoneyByType = async (req, res) => {
+exports.getMoneyByUserId = async (req, res) => {
   try {
     const { userId } = req.params;
     const result = await prisma.money_tb.findMany({
